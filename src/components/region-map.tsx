@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { StyleSheet, useWindowDimensions, View } from "react-native";
-import Svg, { Defs, G, Line, Path, Pattern, Rect } from "react-native-svg";
+import Svg, { Defs, G, Line, Path, Pattern, Rect, Text as SvgText } from "react-native-svg";
 import { ArrowRight, TriangleAlert } from "lucide-react-native";
 import shapes from "@/data/az-regions.json";
 import { colors, font, radius } from "@/theme";
@@ -13,22 +13,23 @@ import { Txt } from "./ui/text";
 type Shape = { name: { az: string; en: string }; path: string; label: [number, number]; bounds: [number, number, number, number] };
 export const REGION_SHAPES = shapes.regions as unknown as Record<string, Shape>;
 
-// Same soft fills as the website, neighbours differ.
+// The website's palette (moss, ochre, pomegranate, plum, sand), a few steps deeper so the shapes
+// read on a small screen against the sand background. Neighbours differ.
 const FILLS: Record<string, string> = {
-  nakhchivan: "#e5eddc",
-  "gazakh-tovuz": "#f6ead0",
-  "ganja-dashkasan": "#f7e1d8",
-  "shaki-zagatala": "#e7e1ec",
-  "guba-khachmaz": "#f6ead0",
-  "central-aran": "#e5eddc",
-  "mountainous-shirvan": "#f0e9da",
-  "absheron-khizi": "#f7e1d8",
-  baku: "#e5eddc",
-  karabakh: "#e7e1ec",
-  "east-zangezur": "#e5eddc",
-  "mil-mughan": "#f6ead0",
-  "shirvan-salyan": "#e7e1ec",
-  "lankaran-astara": "#f0e9da",
+  nakhchivan: "#c9dcb6",
+  "gazakh-tovuz": "#ecd49a",
+  "ganja-dashkasan": "#efbfad",
+  "shaki-zagatala": "#cfc2dc",
+  "guba-khachmaz": "#ecd49a",
+  "central-aran": "#c9dcb6",
+  "mountainous-shirvan": "#dccaa6",
+  "absheron-khizi": "#efbfad",
+  baku: "#c9dcb6",
+  karabakh: "#cfc2dc",
+  "east-zangezur": "#c9dcb6",
+  "mil-mughan": "#ecd49a",
+  "shirvan-salyan": "#cfc2dc",
+  "lankaran-astara": "#dccaa6",
 };
 
 /**
@@ -65,7 +66,7 @@ export function RegionMap({
         <Defs>
           <Pattern id="no-hiking" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
             <Rect width="8" height="8" fill={colors.sand200} />
-            <Line x1="0" y1="0" x2="0" y2="8" stroke={colors.sand400} strokeWidth="3" />
+            <Line x1="0" y1="0" x2="0" y2="8" stroke="#a8936c" strokeWidth="3" />
           </Pattern>
         </Defs>
         <G>
@@ -77,8 +78,9 @@ export function RegionMap({
                 key={slug}
                 d={shape.path}
                 fill={isActive ? colors.forest700 : ok ? FILLS[slug] : "url(#no-hiking)"}
-                stroke={colors.sand50}
-                strokeWidth={isActive ? 3 : 1.6}
+                stroke={colors.white}
+                strokeWidth={isActive ? 3.5 : 2.2}
+                strokeLinejoin="round"
                 onPress={() => {
                   haptic.select();
                   if (onSelect) onSelect(slug);
@@ -88,6 +90,28 @@ export function RegionMap({
             );
           })}
         </G>
+        {active && REGION_SHAPES[active] && (
+          // Name of the selected region, with a dark halo so it reads on any fill.
+          <G pointerEvents="none">
+            {[true, false].map((halo) => (
+              <SvgText
+                key={String(halo)}
+                x={REGION_SHAPES[active].label[0]}
+                y={REGION_SHAPES[active].label[1]}
+                textAnchor="middle"
+                fontSize={30}
+                fontWeight="700"
+                fontFamily={font.bold}
+                fill={colors.white}
+                stroke={halo ? colors.forest950 : undefined}
+                strokeWidth={halo ? 7 : 0}
+                strokeLinejoin="round"
+              >
+                {REGION_SHAPES[active].name[locale]}
+              </SvgText>
+            ))}
+          </G>
+        )}
       </Svg>
 
       {!onSelect && (
