@@ -1,0 +1,171 @@
+/** Strings only the app needs. Everything else is shared with the website's dictionaries. */
+const en = {
+  tabs: { home: "Home", explore: "Explore", map: "Map", guides: "Guides", more: "More" },
+  more: {
+    title: "More",
+    language: "Language",
+    languageHint: "Trail names and descriptions follow this too.",
+    contribute: "Contribute",
+    learn: "Learn",
+    website: "Open the website",
+    about: "About EcoTrail",
+    version: "Version {version}",
+    madeWith: "Built on open data from OpenStreetMap, Wikidata, Wikipedia and SRTM.",
+  },
+  search: {
+    placeholder: "Search trails, places, regions…",
+    cancel: "Cancel",
+  },
+  filters: {
+    title: "Filters",
+    apply: "Show results",
+    reset: "Reset",
+    region: "Region",
+    difficulty: "Difficulty",
+    duration: "Duration",
+    features: "Features",
+    type: "Type",
+    sort: "Sort by",
+    language: "Language",
+    kind: "Guides or agencies",
+  },
+  map: {
+    nearMe: "Near me",
+    locationDenied: "Location access is off. Turn it on in Settings to see trails near you.",
+    all: "All",
+    trails: "Trails",
+    details: "Details",
+    openIn: "Open in maps",
+  },
+  maps: {
+    google: "Google Maps",
+    apple: "Apple Maps",
+    choose: "Open with",
+  },
+  trail: {
+    gpxSaving: "Preparing GPX…",
+    gpxError: "Couldn't download the GPX file.",
+    scrubHint: "Drag across the chart to read the elevation.",
+    atKm: "{km} km",
+    stats: "Stats",
+  },
+  common: {
+    close: "Close",
+    done: "Done",
+    cancel: "Cancel",
+    seeAll: "See all",
+    optional: "Optional",
+    required: "Required",
+    offline: "You're offline. Showing what we have.",
+  },
+  submit: {
+    useMyLocation: "Use my location",
+    tapMap: "Tap the map to set the trailhead.",
+    pinned: "Trailhead set",
+    step: "Step {step} of {total}",
+  },
+  guides: {
+    apply: "Apply",
+    applyShort: "Become a partner",
+  },
+  review: {
+    ratingRequired: "Tap the stars to rate it.",
+    bodyShort: "Write at least 10 characters.",
+  },
+  region: {
+    title: "Region",
+    trails: "Trails",
+    places: "Places",
+    empty: "Nothing listed here yet.",
+    tapHint: "Tap a region on the map to see its trails and places.",
+    filter: "Filter in Explore",
+  },
+};
+
+type Shape = typeof en;
+
+const az: Shape = {
+  tabs: { home: "Əsas", explore: "Kəşf et", map: "Xəritə", guides: "Bələdçilər", more: "Daha çox" },
+  more: {
+    title: "Daha çox",
+    language: "Dil",
+    languageHint: "Marşrut adları və təsvirlər də bu dildə göstərilir.",
+    contribute: "Töhfə ver",
+    learn: "Öyrən",
+    website: "Veb saytı aç",
+    about: "EcoTrail haqqında",
+    version: "Versiya {version}",
+    madeWith: "OpenStreetMap, Vikidata, Vikipediya və SRTM açıq məlumatları əsasında hazırlanıb.",
+  },
+  search: {
+    placeholder: "Marşrut, məkan, region axtar…",
+    cancel: "Ləğv et",
+  },
+  filters: {
+    title: "Filtrlər",
+    apply: "Nəticələri göstər",
+    reset: "Sıfırla",
+    region: "Region",
+    difficulty: "Çətinlik",
+    duration: "Müddət",
+    features: "Xüsusiyyətlər",
+    type: "Növ",
+    sort: "Sıralama",
+    language: "Dil",
+    kind: "Bələdçi və ya agentlik",
+  },
+  map: {
+    nearMe: "Yaxınlığımda",
+    locationDenied: "Məkan icazəsi bağlıdır. Yaxınlıqdakı marşrutları görmək üçün onu Parametrlərdə aktivləşdirin.",
+    all: "Hamısı",
+    trails: "Marşrutlar",
+    details: "Ətraflı",
+    openIn: "Xəritədə aç",
+  },
+  maps: {
+    google: "Google Maps",
+    apple: "Apple Xəritələr",
+    choose: "Bununla aç",
+  },
+  trail: {
+    gpxSaving: "GPX hazırlanır…",
+    gpxError: "GPX faylını yükləmək mümkün olmadı.",
+    scrubHint: "Hündürlüyü görmək üçün barmağınızı qrafik üzərində sürüşdürün.",
+    atKm: "{km} km",
+    stats: "Göstəricilər",
+  },
+  common: {
+    close: "Bağla",
+    done: "Hazır",
+    cancel: "Ləğv et",
+    seeAll: "Hamısı",
+    optional: "İstəyə görə",
+    required: "Məcburi",
+    offline: "İnternet yoxdur. Mövcud məlumatlar göstərilir.",
+  },
+  submit: {
+    useMyLocation: "Olduğum yeri götür",
+    tapMap: "Başlanğıc nöqtəsini seçmək üçün xəritəyə toxunun.",
+    pinned: "Başlanğıc nöqtəsi seçildi",
+    step: "Addım {step} / {total}",
+  },
+  guides: {
+    apply: "Müraciət et",
+    applyShort: "Tərəfdaş ol",
+  },
+  review: {
+    ratingRequired: "Qiymətləndirmək üçün ulduzlara toxunun.",
+    bodyShort: "Ən azı 10 simvol yazın.",
+  },
+  region: {
+    title: "Region",
+    trails: "Marşrutlar",
+    places: "Məkanlar",
+    empty: "Burada hələ heç nə yoxdur.",
+    tapHint: "Marşrut və məkanlarını görmək üçün xəritədə regiona toxunun.",
+    filter: "Kəşf et bölməsində süz",
+  },
+};
+
+export const mobileDict = { az, en };
+export type MobileDict = Shape;

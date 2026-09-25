@@ -1,56 +1,60 @@
-# Welcome to your Expo app 👋
+# EcoTrail — mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The EcoTrail app for iOS and Android: mapped hiking trails, waterfalls, lakes and peaks across Azerbaijan, with local guides. Built with Expo (SDK 57) and Expo Router, talking to the same Laravel API as the [website](https://github.com/arto-rash/ecotrail-frontend).
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Run it
 
 ```bash
-npm run reset-project
+npm install
+npx expo start          # scan the QR code with Expo Go, or press i / a for a simulator
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Everything runs in Expo Go — the map is MapLibre inside a WebView, so no native map SDK or API key is needed.
 
-### Other setup steps
+### Environment
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Copy `.env.example` to `.env` to point at another API:
 
-## Learn more
+| Variable | Default |
+| --- | --- |
+| `EXPO_PUBLIC_API_URL` | `https://ecotrail-api.135-225-57-4.sslip.io/api` |
+| `EXPO_PUBLIC_WEB_URL` | `https://ecotrail-frontend.vercel.app` (catalogue photos, share links) |
 
-To learn more about developing your project with Expo, look at the following resources:
+For a local backend on a device, use your machine's LAN IP (e.g. `http://192.168.1.20:8000/api`).
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## What's inside
 
-## Join the community
+- **Home** — hero search, live stats, featured trails, the 14 economic regions as a tappable map, places, eco-challenges, guides.
+- **Explore** — trails and places with search, region / duration / difficulty / feature / type filters and sorting, infinite scroll.
+- **Map** — every route and place on OpenFreeMap tiles, layer chips, "near me", a peek card with directions.
+- **Trail / place pages** — stats, route map, finger-scrub elevation profile, GPX export via the share sheet, directions in Google or Apple Maps, reviews with half-star ratings, sources.
+- **Guides** — filters, profiles, tours, and contact details that are only fetched when you tap "Show contact".
+- **Forms** — write a review, share a trail (3 steps, map pin, photos), apply as a partner guide.
+- Azerbaijani and English, following the device language; switch under **More**.
 
-Join our community of developers creating universal apps.
+## Structure
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```
+src/
+  app/          Expo Router screens: (tabs), trail/[slug], place/[slug], guide/[slug], region/[slug], modals
+  components/   UI kit (ui/), cards, map (WebView bridge), detail parts, tab bar
+  i18n/         az.json + en.json shared with the website, plus mobile-only strings
+  lib/          API client, React Query hooks, formatting, GPX, haptics
+  theme/        colours, type, radii and shadows — the website's tokens
+```
+
+## Checks
+
+```bash
+npm run typecheck
+npm run lint
+npx expo-doctor
+```
+
+## Builds
+
+EAS profiles live in `eas.json` (`development`, `preview`, `production`):
+
+```bash
+npx eas-cli@latest build --profile preview --platform android
+```

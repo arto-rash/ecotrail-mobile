@@ -1,18 +1,22 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "EcoTrail",
+    "slug": "ecotrail",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "mobile",
-    "userInterfaceStyle": "automatic",
+    "scheme": "ecotrail",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#fbf8f2",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "bundleIdentifier": "az.ecotrail.app",
+      "supportsTablet": true,
+      "config": { "usesNonExemptEncryption": false }
     },
     "android": {
+      "package": "az.ecotrail.app",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#1d3f2a",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
@@ -28,9 +32,26 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#1d3f2a",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 220
+        }
+      ],
+      "expo-secure-store",
+      "expo-localization",
+      "expo-sharing",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "EcoTrail uses your location to show trails near you and to mark a trailhead when you share a trail."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "EcoTrail needs access to your photos so you can add pictures to a trail you share.",
+          "cameraPermission": false,
+          "microphonePermission": false
         }
       ]
     ],
