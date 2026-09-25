@@ -35,12 +35,26 @@ const FILLS: Record<string, string> = {
  * Azerbaijan's 14 economic regions. Tap one to select it; the card below shows its counts and
  * opens the region. Regions with landmine risk are hatched.
  */
-export function RegionMap({ regions, onOpen, width: fixedWidth }: { regions: Region[]; onOpen: (slug: string) => void; width?: number }) {
+export function RegionMap({
+  regions,
+  onOpen,
+  onSelect,
+  selected,
+  width: fixedWidth,
+}: {
+  regions: Region[];
+  onOpen?: (slug: string) => void;
+  /** Direct mode (Map tab): a tap selects the region right away, with no summary card. */
+  onSelect?: (slug: string) => void;
+  selected?: string | null;
+  width?: number;
+}) {
   const { locale, dict, m } = useI18n();
   const window = useWindowDimensions();
   const width = fixedWidth ?? window.width - 40;
   const height = (width * shapes.height) / shapes.width;
-  const [active, setActive] = useState<string | null>(null);
+  const [picked, setActive] = useState<string | null>(null);
+  const active = onSelect ? (selected ?? null) : picked;
   const bySlug = Object.fromEntries(regions.map((r) => [r.slug, r]));
   const info = active ? bySlug[active] : null;
   const advised = info?.hiking_advised ?? true;
@@ -67,7 +81,8 @@ export function RegionMap({ regions, onOpen, width: fixedWidth }: { regions: Reg
                 strokeWidth={isActive ? 3 : 1.6}
                 onPress={() => {
                   haptic.select();
-                  setActive(isActive ? null : slug);
+                  if (onSelect) onSelect(slug);
+                  else setActive(isActive ? null : slug);
                 }}
               />
             );
@@ -75,41 +90,43 @@ export function RegionMap({ regions, onOpen, width: fixedWidth }: { regions: Reg
         </G>
       </Svg>
 
-      <Bouncy
-        disabled={!active || !advised}
-        onPress={() => active && onOpen(active)}
-        scaleTo={0.98}
-        style={[styles.card, active && advised && styles.cardActive]}
-      >
-        {active ? (
-          <>
-            <View style={{ flex: 1, gap: 3 }}>
-              <Txt variant="cardTitle" color={advised ? colors.sand50 : colors.ink900}>
-                {REGION_SHAPES[active]?.name[locale] ?? info?.name}
-              </Txt>
-              {advised ? (
-                <Txt variant="small" color={colors.moss200}>
-                  {fill(dict.regionMap.trails, { count: info?.trails_count ?? 0 })} · {fill(dict.regionMap.places, { count: info?.places_count ?? 0 })}
+      {!onSelect && (
+        <Bouncy
+          disabled={!active || !advised}
+          onPress={() => active && onOpen?.(active)}
+          scaleTo={0.98}
+          style={[styles.card, active && advised && styles.cardActive]}
+        >
+          {active ? (
+            <>
+              <View style={{ flex: 1, gap: 3 }}>
+                <Txt variant="cardTitle" color={advised ? colors.sand50 : colors.ink900}>
+                  {REGION_SHAPES[active]?.name[locale] ?? info?.name}
                 </Txt>
-              ) : (
-                <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
-                  <TriangleAlert size={14} color={colors.pomegranate600} />
-                  <Txt variant="small" color={colors.pomegranate700}>
-                    {dict.regionMap.noHiking}
+                {advised ? (
+                  <Txt variant="small" color={colors.moss200}>
+                    {fill(dict.regionMap.trails, { count: info?.trails_count ?? 0 })} · {fill(dict.regionMap.places, { count: info?.places_count ?? 0 })}
                   </Txt>
+                ) : (
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+                    <TriangleAlert size={14} color={colors.pomegranate600} />
+                    <Txt variant="small" color={colors.pomegranate700}>
+                      {dict.regionMap.noHiking}
+                    </Txt>
+                  </View>
+                )}
+              </View>
+              {advised && (
+                <View style={styles.go}>
+                  <ArrowRight size={18} color={colors.forest900} strokeWidth={2.5} />
                 </View>
               )}
-            </View>
-            {advised && (
-              <View style={styles.go}>
-                <ArrowRight size={18} color={colors.forest900} strokeWidth={2.5} />
-              </View>
-            )}
-          </>
-        ) : (
-          <Txt style={styles.hint}>{m.region.tapHint}</Txt>
-        )}
-      </Bouncy>
+            </>
+          ) : (
+            <Txt style={styles.hint}>{m.region.tapHint}</Txt>
+          )}
+        </Bouncy>
+      )}
     </View>
   );
 }

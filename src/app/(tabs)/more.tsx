@@ -2,11 +2,12 @@ import { Linking, ScrollView, StyleSheet, View } from "react-native";
 import { router } from "expo-router";
 import Constants from "expo-constants";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BookOpen, ChevronRight, Globe, Handshake, Leaf, Plus, Sprout, type LucideIcon } from "lucide-react-native";
-import { colors, font, GUTTER, radius } from "@/theme";
+import { BookOpen, ChevronRight, Globe, Handshake, Plus, Sprout, type LucideIcon } from "lucide-react-native";
+import { colors, GUTTER, radius } from "@/theme";
 import { fill, useI18n } from "@/i18n";
 import { WEB_URL } from "@/lib/api";
 import { LocaleToggle } from "@/components/locale-toggle";
+import { Logo } from "@/components/logo";
 import { useTabBarSpace } from "@/components/tab-bar";
 import { Bouncy } from "@/components/ui/bouncy";
 import { Txt } from "@/components/ui/text";
@@ -75,10 +76,7 @@ export default function More() {
 
       <View style={styles.about}>
         <Topo color={colors.forest700} size={440} style={{ position: "absolute", bottom: -220, right: -180 }} />
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-          <Leaf size={20} color={colors.moss200} strokeWidth={2.4} />
-          <Txt style={{ fontFamily: font.display, fontSize: 22, color: colors.sand50 }}>EcoTrail</Txt>
-        </View>
+        <Logo light tagline={locale === "az" ? "Azərbaycan" : "Azerbaijan"} />
         <Txt variant="body" color="rgba(251,248,242,0.8)">
           {dict.footer.about}
         </Txt>

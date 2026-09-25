@@ -13,6 +13,7 @@ import { useFeaturedPlaces, useFeaturedTrails, useRegions, useStats } from "@/li
 import { PlaceCard, TrailTile } from "@/components/cards";
 import { RegionMap } from "@/components/region-map";
 import { LocaleToggle } from "@/components/locale-toggle";
+import { Logo } from "@/components/logo";
 import { useTabBarSpace } from "@/components/tab-bar";
 import { Bouncy } from "@/components/ui/bouncy";
 import { Button } from "@/components/ui/button";
@@ -67,10 +68,7 @@ export default function Home() {
             style={StyleSheet.absoluteFill}
           />
           <View style={[styles.heroTop, { paddingTop: insets.top + 10 }]}>
-            <View style={styles.brand}>
-              <Leaf size={18} color={colors.moss200} strokeWidth={2.4} />
-              <Txt style={styles.brandText}>EcoTrail</Txt>
-            </View>
+            <Logo light tagline={locale === "az" ? "Azərbaycan" : "Azerbaijan"} />
             <LocaleToggle tone="dark" />
           </View>
           <View style={styles.heroBody}>
@@ -274,8 +272,6 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   heroTop: { position: "absolute", top: 0, left: GUTTER, right: GUTTER, flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  brand: { flexDirection: "row", alignItems: "center", gap: 7 },
-  brandText: { fontFamily: font.display, fontSize: 21, color: colors.sand50, letterSpacing: -0.4 },
   heroBody: { position: "absolute", left: GUTTER, right: GUTTER, bottom: 54, gap: 14 },
   eyebrow: { alignSelf: "flex-start", paddingHorizontal: 12, paddingVertical: 7, borderRadius: radius.pill, backgroundColor: "rgba(251,248,242,0.16)", borderWidth: 1, borderColor: "rgba(251,248,242,0.2)" },
   search: { flexDirection: "row", alignItems: "center", gap: 10, height: 56, paddingLeft: 18, paddingRight: 7, borderRadius: radius.pill, backgroundColor: colors.sand50, marginTop: 4, ...shadow.lift },

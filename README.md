@@ -51,6 +51,16 @@ npm run lint
 npx expo-doctor
 ```
 
+## Preview in Expo Go (no dev server)
+
+The app is published to EAS Update on the `preview` branch (project `@arto_rashid/ecotrail`). Sign in to Expo Go with the `arto_rashid` account and open it from **Projects**, or scan the QR on the [update page](https://expo.dev/accounts/arto_rashid/projects/ecotrail/updates). The runtime version uses the `sdkVersion` policy (`exposdk:57.0.0`), which is what Expo Go runs.
+
+Publish a new version:
+
+```bash
+npm run publish:preview -- --message "What changed"
+```
+
 ## Builds
 
 EAS profiles live in `eas.json` (`development`, `preview`, `production`):
