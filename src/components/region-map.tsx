@@ -16,20 +16,20 @@ export const REGION_SHAPES = shapes.regions as unknown as Record<string, Shape>;
 // The website's palette (moss, ochre, pomegranate, plum, sand), a few steps deeper so the shapes
 // read on a small screen against the sand background. Neighbours differ.
 const FILLS: Record<string, string> = {
-  nakhchivan: "#c9dcb6",
-  "gazakh-tovuz": "#ecd49a",
-  "ganja-dashkasan": "#efbfad",
-  "shaki-zagatala": "#cfc2dc",
-  "guba-khachmaz": "#ecd49a",
-  "central-aran": "#c9dcb6",
-  "mountainous-shirvan": "#dccaa6",
-  "absheron-khizi": "#efbfad",
-  baku: "#c9dcb6",
-  karabakh: "#cfc2dc",
-  "east-zangezur": "#c9dcb6",
-  "mil-mughan": "#ecd49a",
-  "shirvan-salyan": "#cfc2dc",
-  "lankaran-astara": "#dccaa6",
+  nakhchivan: "#b3d197",
+  "gazakh-tovuz": "#e8c567",
+  "ganja-dashkasan": "#eba48b",
+  "shaki-zagatala": "#bca7d3",
+  "guba-khachmaz": "#e8c567",
+  "central-aran": "#b3d197",
+  "mountainous-shirvan": "#d1b47c",
+  "absheron-khizi": "#eba48b",
+  baku: "#b3d197",
+  karabakh: "#bca7d3",
+  "east-zangezur": "#b3d197",
+  "mil-mughan": "#e8c567",
+  "shirvan-salyan": "#bca7d3",
+  "lankaran-astara": "#d1b47c",
 };
 
 /**
@@ -66,7 +66,7 @@ export function RegionMap({
         <Defs>
           <Pattern id="no-hiking" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
             <Rect width="8" height="8" fill={colors.sand200} />
-            <Line x1="0" y1="0" x2="0" y2="8" stroke="#a8936c" strokeWidth="3" />
+            <Line x1="0" y1="0" x2="0" y2="8" stroke="#8f7a55" strokeWidth="3" />
           </Pattern>
         </Defs>
         <G>
