@@ -1,4 +1,4 @@
-const DEFAULT_API = "https://ecotrail-api.135-225-57-4.sslip.io/api";
+const DEFAULT_API = "https://ecotrail-api.46-224-126-66.sslip.io/api";
 const DEFAULT_WEB = "https://ecotrail-frontend.vercel.app";
 
 export const API_URL = (process.env.EXPO_PUBLIC_API_URL || DEFAULT_API).replace(/\/$/, "");

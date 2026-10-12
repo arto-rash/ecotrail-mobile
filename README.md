@@ -17,7 +17,7 @@ Copy `.env.example` to `.env` to point at another API:
 
 | Variable | Default |
 | --- | --- |
-| `EXPO_PUBLIC_API_URL` | `https://ecotrail-api.135-225-57-4.sslip.io/api` |
+| `EXPO_PUBLIC_API_URL` | `https://ecotrail-api.46-224-126-66.sslip.io/api` |
 | `EXPO_PUBLIC_WEB_URL` | `https://ecotrail-frontend.vercel.app` (catalogue photos, share links) |
 
 For a local backend on a device, use your machine's LAN IP (e.g. `http://192.168.1.20:8000/api`).
