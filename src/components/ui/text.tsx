@@ -5,7 +5,7 @@ type Variant = keyof typeof typeScale;
 
 type Props = TextProps & { variant?: Variant; color?: string; align?: TextStyle["textAlign"] };
 
-/** The app's text: Fraunces for headings, Manrope for everything else. */
+/** The app's text: Geologica throughout, with the sharp ExtraBold cut for headings. */
 export function Txt({ variant = "body", color = colors.ink900, align, style, ...rest }: Props) {
   return <Text {...rest} style={[typeScale[variant], { color, textAlign: align }, style]} />;
 }

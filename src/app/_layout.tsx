@@ -8,8 +8,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
-import { Fraunces_600SemiBold, Fraunces_600SemiBold_Italic, Fraunces_700Bold } from "@expo-google-fonts/fraunces";
-import { Manrope_500Medium, Manrope_600SemiBold, Manrope_700Bold, Manrope_800ExtraBold } from "@expo-google-fonts/manrope";
+import { Geologica_400Regular, Geologica_600SemiBold, Geologica_700Bold, Geologica_800ExtraBold } from "@expo-google-fonts/geologica";
 import { LocaleProvider, useI18n } from "@/i18n";
 import { queryClient } from "@/lib/queries";
 import { colors, font } from "@/theme";
@@ -37,13 +36,12 @@ const modal = { presentation: "modal" as const, headerRight: () => <CloseButton 
 function RootStack() {
   const { ready, dict, m } = useI18n();
   const [fontsLoaded, fontError] = useFonts({
-    Fraunces_600SemiBold,
-    Fraunces_600SemiBold_Italic,
-    Fraunces_700Bold,
-    Manrope_500Medium,
-    Manrope_600SemiBold,
-    Manrope_700Bold,
-    Manrope_800ExtraBold,
+    Geologica_400Regular,
+    Geologica_600SemiBold,
+    Geologica_700Bold,
+    Geologica_800ExtraBold,
+    // Static instance of the variable font at weight 800, sharpness 100 (the ODLAR heading cut).
+    GeologicaSharp_800ExtraBold: require("../../assets/fonts/Geologica-SharpExtraBold.ttf"),
   });
   const loaded = ready && (fontsLoaded || !!fontError);
 

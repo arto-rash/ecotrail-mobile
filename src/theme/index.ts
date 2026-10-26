@@ -32,13 +32,14 @@ export const colors = {
 } as const;
 
 export const font = {
-  display: "Fraunces_600SemiBold",
-  displayBold: "Fraunces_700Bold",
-  displayItalic: "Fraunces_600SemiBold_Italic",
-  body: "Manrope_500Medium",
-  semibold: "Manrope_600SemiBold",
-  bold: "Manrope_700Bold",
-  heavy: "Manrope_800ExtraBold",
+  display: "GeologicaSharp_800ExtraBold",
+  displayBold: "GeologicaSharp_800ExtraBold",
+  // Geologica has no italic: the accent line of a headline is coloured instead, as in ODLAR.
+  displayItalic: "GeologicaSharp_800ExtraBold",
+  body: "Geologica_400Regular",
+  semibold: "Geologica_600SemiBold",
+  bold: "Geologica_700Bold",
+  heavy: "Geologica_800ExtraBold",
 } as const;
 
 export const radius = { sm: 10, md: 14, lg: 16, card: 20, xl: 28, pill: 999 } as const;
@@ -65,11 +66,11 @@ export const shadow = {
 };
 
 export const type = {
-  hero: { fontFamily: font.display, fontSize: 40, lineHeight: 44, letterSpacing: -0.8 },
-  display: { fontFamily: font.display, fontSize: 30, lineHeight: 35, letterSpacing: -0.6 },
-  title: { fontFamily: font.display, fontSize: 24, lineHeight: 29, letterSpacing: -0.4 },
-  heading: { fontFamily: font.display, fontSize: 19, lineHeight: 24, letterSpacing: -0.2 },
-  cardTitle: { fontFamily: font.display, fontSize: 17, lineHeight: 22, letterSpacing: -0.2 },
+  hero: { fontFamily: font.display, fontSize: 40, lineHeight: 44, letterSpacing: -1.2 },
+  display: { fontFamily: font.display, fontSize: 30, lineHeight: 35, letterSpacing: -0.9 },
+  title: { fontFamily: font.display, fontSize: 24, lineHeight: 29, letterSpacing: -0.7 },
+  heading: { fontFamily: font.display, fontSize: 19, lineHeight: 24, letterSpacing: -0.55 },
+  cardTitle: { fontFamily: font.display, fontSize: 17, lineHeight: 22, letterSpacing: -0.5 },
   body: { fontFamily: font.body, fontSize: 15, lineHeight: 23 },
   bodyStrong: { fontFamily: font.semibold, fontSize: 15, lineHeight: 22 },
   small: { fontFamily: font.semibold, fontSize: 13, lineHeight: 18 },

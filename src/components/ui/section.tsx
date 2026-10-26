@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react-native";
 import { colors, font, GUTTER } from "@/theme";
 import { Txt } from "./text";
 
-/** Eyebrow + Fraunces title + optional "see all" link, like the website's section heads. */
+/** Eyebrow + Geologica title + optional "see all" link, like the website's section heads. */
 export function SectionHeader({ eyebrow, title, text, action, onAction, style, tone = "light" }: { eyebrow?: string; title: string; text?: string; action?: string; onAction?: () => void; style?: StyleProp<ViewStyle>; tone?: "light" | "dark" }) {
   const dark = tone === "dark";
   return (
